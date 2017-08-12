@@ -1,10 +1,6 @@
 $(function() {
     $('#btnSignUp').click(function() {
-
-      var user = $('inputName')
-      var email = $('inputEmial')
-      var pass = $('inputPassword')
-
+      
         $.ajax({
             url: '/signUp',
             data: $('form').serialize(),
