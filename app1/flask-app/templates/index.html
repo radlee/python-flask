@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>read da quotes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
+    <link rel="stylesheet" href="/static/app.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <section class="main-content">
+      <div class="row hero">
+        <div class="columns small-12 medium-12">
+          <h1>Welcome to Da Quotes</h1>
+          <h2>Search for a person and we'll show ye his finest quotes</h2>
+          <blockquote>
+            "You never know the value of a quote, till you try to make one up"
+            <cite>Flask Developer</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns small-12 medium-12 large-8">
+          <form class="quotes-form" action="{{ url_for('index') }}">
+            <div class="row">
+              <div class="columns large-6">
+                <label>
+                  Person
+                  <input type="text" name="person" value="">
+                </label>
+              </div>
+              <!-- col6 -->
+              <div class="columns large-6">
+              <label>
+                Number of Quotes
+                <select name="limit">
+                  <option value="all">All</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+              </label>
+            </div>
+
+            </div>
+            <!-- row -->
+            <div class="row">
+              <div class="columns large-12">
+                <button type="submit" class="button expand">Serve me sum quotes!</button>
+              </div>
+            </div>
+          </form>
+          <!-- quotes form -->
+
+          <!-- Jinja2 Logic  -->
+          {% if person %}
+      <h2>Quotes by "{{ person.title() }}"</h2>
+
+      {% if quotes %}
+        <div class="quotes-container">
+          {% for quote in quotes %}
+            <hr>
+            <blockquote>
+              {{ quote }}
+            </blockquote>
+          {% endfor %}
+        </div>
+      {% else %}
+        <h5>
+          Unfortunately we have no quotes by this person currently. 😔
+          <br>
+          Try searching for: <code>drake</code>, <code>trump</code>, <code>alicia keys</code>, <code>abel tesfaye</code>, <code>buhari</code> instead.
+        </h5>
+       {% endif %}
+    {% endif %}
+
+        </div>
+        <!-- large-8 -->
+      </div>
+      <!-- row -->
+    </section>
+  </body>
+</html>
